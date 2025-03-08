@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaf By List</title>
+<link href="style.css" rel="stylesheet">
+<!-- Update Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js" type="module"></script>
+</head>
+<body>
+    <!-- Remove user display div -->
+    <img src="download.png" alt="Leaf By List" class="logo">    
+<div class="login-container">
+    <div class="auth-toggle">
+        <button onclick="toggleAuth('login')" id="loginBtn" class="active">Login</button>
+        <button onclick="toggleAuth('signup')" id="signupBtn">Sign Up</button>
+    </div>
+    <form id="authForm" onsubmit="handleAuth(event)">
+        <div class="input-box">
+            <input type="email" id="email" placeholder="ENTER YOUR EMAIL HERE" required>
+        </div>
+        <div class="input-box password-box">
+            <input type="password" id="password" placeholder="ENTER YOUR PASSWORD HERE" required>
+            <span id="toggle-icon" class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
+        <div id="errorMessage" class="error-message"></div>
+        <button type="submit" class="login-btn">CONTINUE</button>
+    </form>
+    <!-- Add Google Sign-In button -->
+    <div class="or-divider">
+        <span>OR</span>
+    </div>
+    <button onclick="signInWithGoogle()" class="google-btn">
+        <img src="https://www.google.com/favicon.ico" alt="Google Icon" width="20" height="20">
+        Continue with Google
+    </button>
+</div>
+
+<script type="module">
+    // Update imports to include GoogleAuthProvider
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } 
+    from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBGKTGVbPechWWzRjNHOEONF_dO8Mlm7-k",
+        authDomain: "leafbylist.firebaseapp.com",
+        projectId: "leafbylist",
+        storageBucket: "leafbylist.firebasestorage.app",
+        messagingSenderId: "363374460502",
+        appId: "1:363374460502:web:72541e5e72ff02317605f7",
+        measurementId: "G-XD0QFM2DPE"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    let isLogin = true;
+
+    window.toggleAuth = function(type) {
+        isLogin = type === 'login';
+        document.getElementById('loginBtn').classList.toggle('active', isLogin);
+        document.getElementById('signupBtn').classList.toggle('active', !isLogin);
+        document.getElementById('errorMessage').textContent = '';
+    }
+
+    window.handleAuth = async function(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        try {
+            if (isLogin) {
+                // Login
+                await signInWithEmailAndPassword(auth, email, password);
+            } else {
+                // Sign up
+                await createUserWithEmailAndPassword(auth, email, password);
+            }
+            window.location.href = 'choosingtask.html';
+        } catch (error) {
+            errorMessage.textContent = error.message;
+        }
+    }
+
+    // Add Google Sign-In function
+    window.signInWithGoogle = async function() {
+        try {
+            await signInWithPopup(auth, googleProvider);
+            window.location.href = 'choosingtask.html';
+        } catch (error) {
+            document.getElementById('errorMessage').textContent = error.message;
+        }
+    }
+</script>
+
+<style>
+    .or-divider {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+    }
+
+    .or-divider::before,
+    .or-divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 45%;
+        height: 1px;
+        background-color: #ccc;
+    }
+
+    .or-divider::before {
+        left: 0;
+    }
+
+    .or-divider::after {
+        right: 0;
+    }
+
+    .or-divider span {
+        background-color: white;
+        padding: 0 10px;
+        color: #666;
+    }
+
+    .google-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .google-btn:hover {
+        background-color: #f5f5f5;
+    }
+
+    .google-btn img {
+        margin-right: 8px;
+    }
+</style>
+</body>
+</html>

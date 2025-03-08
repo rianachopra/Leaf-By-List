@@ -1,0 +1,466 @@
+.logo {
+position: absolute;
+top: 10px;
+left: 10px;
+height: 113px;
+width: 188px;
+}
+body {
+    background-color: #f8e5e5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 20px; 
+}
+
+.text-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    color: #d07b7b; 
+    font-size: 22px;
+    display: inline-block;
+}
+
+.btn {
+    display: block;
+    font-size: 33px; 
+    font-weight: bold;
+    color: #FA8072;
+    text-decoration: none;
+    padding: 12px 0; 
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    color: #e67373; 
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100vh; 
+    gap: 20px; 
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 50px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    width: 800px;
+}
+
+.input-box {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    width: 700px;
+    height: 80px;
+    margin: 0 auto 20px auto; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-box input {
+    border: none;
+    outline: none;
+    font-size: 20px; 
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: #555;
+    background: transparent;
+}
+
+.password-box {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    font-size: 24px; 
+}
+
+.login-btn {
+    background: white;
+    color: #555;
+    border: none;
+    font-size: 22px;
+    padding: 15px 0;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 30px auto;
+    display: block;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn:hover {
+    background: #f8bbd0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 20px;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 40px;
+    color: black;
+}
+
+.main-container {
+    background: #f8e5e5;
+    padding: 40px;
+    width: 90%;
+    max-width: 1200px;
+    position: relative;
+}
+
+.task-list {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.task-item {
+    background: white;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.task-item input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    background: white;
+}
+
+.task-item input[type="checkbox"]:checked {
+    background-color: #000;
+    border-color: #000;
+}
+
+.task-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    top: 6px;
+    left: 11px;
+}
+
+.task-item span {
+    color: #ff9eaf;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.task-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 20px;
+}
+
+.task {
+    background: white;
+    padding: 20px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.task input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    background: white;
+}
+
+.task input[type="checkbox"]:checked {
+    background-color: #000;
+    border-color: #000;
+}
+
+.task input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    top: 6px;
+    left: 11px;
+}
+
+.task span {
+    color: #ff9eaf;
+    font-size: 16px;
+    padding: 10px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.continue-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 15px 60px;
+    font-size: 20px;
+    background: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.continue-btn:hover {
+    transform: translateY(-2px);
+}
+
+.main-container {
+    background: #f8e5e5;
+    padding: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: flex-start;
+}
+.task-list {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 0;
+}
+
+.tree-container {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tree-container img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+
+.task-item {
+    background: white;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.task-item input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    background: white;
+}
+
+.task-item input[type="checkbox"]:checked {
+    background-color: #000;
+    border-color: #000;
+}
+
+.task-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    top: 6px;
+    left: 11px;
+}
+
+.task-item span {
+    color: #ff9eaf;
+    font-size: 18px;
+    padding: 10px;
+}
+
+
+
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.auth-toggle {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.auth-toggle button {
+    padding: 12px 40px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 18px;
+    min-width: 120px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-toggle button.active {
+    background: #f8bbd0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    color: #ff0000;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Cherry blossom decoration */
+.cherry-blossom {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    opacity: 0.8;
+}
+
+
+.headline {
+    font-size: 500;
+    
+}
+
+.google-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.google-btn:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.or-divider {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.or-divider::before {
+    left: 0;
+}
+
+.or-divider::after {
+    right: 0;
+}
+
+.or-divider span {
+    background-color: white;
+    padding: 0 15px;
+    color: #666;
+    font-size: 16px;
+}

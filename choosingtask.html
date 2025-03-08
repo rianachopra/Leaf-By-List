@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Tasks - Leaf By List</title>
+    <style>
+        body {
+            background-color: #f4d4dc;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            background-color: white;
+            border: 3px solid #000;
+            border-radius: 30px;
+            padding: 35px 50px;
+            width: 95%;
+            max-width: 1200px;
+            position: relative;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .title {
+            text-align: center;
+            color: #000;
+            font-size: 28px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .task-item {
+            background: #ffe8ee;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .task-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .task-item span {
+            color: #333;
+            font-size: 16px;
+        }
+
+        .continue-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 12px 40px;
+            font-size: 18px;
+            background-color: white;
+            border: 2px solid #000;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .continue-btn:hover {
+            background-color: #ffe8ee;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="title">CHOOSE YOUR TASKS...</h1>
+        <p class="subtitle">
+            What do you often struggle with? What do you want to get done in a day?<br>
+            What are your goals? Choose <strong>7</strong> from the following...
+        </p>
+        
+        <div class="tasks-grid">
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Study for 1+ hour(s)</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Meditate or relax for 10+ minutes</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Sleep for more than 8 hours</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Drink 8+ glasses of water</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Help with 1+ chore at home</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Spend 20+ minutes on a hobby</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Read a book for 20+ minutes</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Eat at least 1 fruit and 1 vegetable</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Write or reflect for 5+ minutes</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Do 15+ minutes of exercise</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Limit screen time to 2 hours</span>
+            </label>
+            
+            <label class="task-item">
+                <input type="checkbox">
+                <span>Play outside / Meet friends for 30 minutes</span>
+            </label>
+        </div>
+        
+        <button class="continue-btn">CONTINUE</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const continueBtn = document.querySelector('.continue-btn');
+            
+            continueBtn.addEventListener('click', function() {
+                const selectedTasks = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.nextElementSibling.textContent);
+                
+                if (selectedTasks.length !== 7) {
+                    alert('Please select exactly 7 tasks.');
+                    return;
+                }
+                
+                localStorage.setItem('selectedTasks', JSON.stringify(selectedTasks));
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>

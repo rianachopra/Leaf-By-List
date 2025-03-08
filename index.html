@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Complete Your Tasks</title>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #f8e5e5;
+      font-family: Arial, sans-serif;
+    }
+
+   
+    .outer-container {
+      max-width: 1200px;
+      margin: 40px auto;      
+      background: #fff;   
+      border-radius: 20px;    
+      padding: 40px;          
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    
+    h1 {
+      text-align: center;
+      font-size: 48px;
+      color: black;
+      margin-bottom: 10px;
+    }
+    h2 {
+      text-align: center;
+      font-style: italic;
+      color: black;
+      margin-bottom: 40px;
+    }
+
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    
+    .task-list {
+      width: 60%;
+    }
+
+ 
+    .task-item {
+      background: #ffeef0;     
+      border-radius: 30px;
+      padding: 20px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    
+    .task-item input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #ddd;
+      border-radius: 50%;
+      margin-right: 15px;
+      cursor: pointer;
+      position: relative;
+      background: white;
+    }
+    .task-item input[type="checkbox"]:checked {
+      background-color: #000;
+      border-color: #000;
+    }
+    .task-item input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      top: 6px;
+      left: 11px;
+    }
+
+
+    .task-item span {
+      color: #ff9eaf;
+      font-size: 18px;
+      padding: 10px;
+    }
+
+   
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    
+    .tree-container {
+      width: 35%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    
+    .tree-container img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+ 
+  <div class="outer-container">
+    
+    <h1>COMPLETE YOUR TASKS!</h1>
+    <h2>"The key is not to prioritize what's on your schedule, but to schedule your priorities" - Stephen Covey</h2>
+
+ 
+    <div class="content">
+      <div class="task-list">
+  
+      </div>
+      <div class="tree-container">
+        <img id="tree-image" style="display:none;" alt="Tree Growth">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  
+      const defaultTasks = [
+        "Sleep for more than 8 hours",
+        "Drink 8+ glasses of water",
+        "Help with 1+ chore at home",
+        "Read a book for 20+ minutes",
+        "Write or reflect for 5+ minutes",
+        "Do 15+ minutes of exercise",
+        "Limit screen time to 2 hours"
+      ];
+
+      // Load tasks from localStorage, or use default if none
+      if (!localStorage.getItem("selectedTasks")) {
+        localStorage.setItem("selectedTasks", JSON.stringify(defaultTasks));
+      }
+
+      const taskListContainer = document.querySelector(".task-list");
+      const treeImage = document.getElementById("tree-image");
+      const selectedTasks = JSON.parse(localStorage.getItem("selectedTasks")) || defaultTasks;
+      let completedTasks = [];
+
+      // Updates the tree image based on how many tasks are completed
+      function updateTree() {
+        const count = completedTasks.length;
+        if (count === 0) {
+          treeImage.style.display = "none";
+          return;
+        }
+        treeImage.style.display = "block";
+        const stage = Math.min(count, 7); // Example: up to 7 stages
+        treeImage.src = `images/stage-${stage}.png`;
+      }
+
+      // Toggles task completion and updates the UI
+      window.toggleTask = function(task) {
+        const index = completedTasks.indexOf(task);
+        if (index > -1) {
+          completedTasks.splice(index, 1);
+        } else {
+          completedTasks.push(task);
+        }
+        const taskElement = document.querySelector(`[data-task="${task}"]`);
+        if (taskElement) {
+          const span = taskElement.querySelector('span');
+          if (span) span.classList.toggle('completed');
+        }
+        updateTree();
+      };
+
+      // Populate the task list
+      if (selectedTasks.length === 0) {
+        taskListContainer.innerHTML = "<p>No tasks selected.</p>";
+      } else {
+        selectedTasks.forEach((task) => {
+          const taskItem = document.createElement("div");
+          taskItem.classList.add("task-item");
+          taskItem.setAttribute("data-task", task);
+          taskItem.innerHTML = `
+            <input type="checkbox" onchange="toggleTask('${task}')">
+            <span>${task}</span>
+          `;
+          taskListContainer.appendChild(taskItem);
+        });
+      }
+      updateTree();
+    });
+  </script>
+</body>
+</html>
